@@ -10,18 +10,12 @@ var pymChild = new pym.Child();
 
 
   window.onload = function(){
-    console.log('test')
-    console.log('new')
     pymChild.sendHeight();
   };
 
   $(window).load(function(){
-    console.log('ne1w')
     pymChild.sendHeight();    
-  });
-      
-
-
+  });      
 
 // inital data
 var datesdata = [
@@ -206,7 +200,8 @@ d3.json("data/usa2.json", function(error, regions) {
         var center = path.centroid(d)
         return "translate(" + center + ")"; 
       })          
-      .attr("text-anchor","middle");
+      .attr("text-anchor","middle")
+      .on("click", clicked);
 
     // Append Sum of Dates 
       regionTitles.append("tspan")
