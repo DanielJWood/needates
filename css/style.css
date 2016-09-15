@@ -166,7 +166,8 @@ Map
 .check-head {
     text-transform: uppercase;
     font-size: 140%;
-    text-align: center;
+    /*text-align: center;*/
+    padding-left: 22px;
 }
 
 .checkbox-container {
