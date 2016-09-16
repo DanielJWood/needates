@@ -1,9 +1,19 @@
-// TO Do
+// $(function() {
+//   $('form').submit(function(){
+//     console.log('test')
+//     $.post('http://localhost:4000/', function() {
+//       window.location = 'http://google.com';
+//     });
+//     return false;
+//   });
+// });
 
-console.log(document.getElementsByTagName('body')[0].offsetHeight.toString());
+$("#submit").click(function(e){
+    e.preventDefault();
+    console.log('test')
+    window.location="article/";
+});
 
-
-// var pymChild = new pym.Child({ id: 'example-follow-links' });
 
 // Initiate pym
 var pymChild = new pym.Child();
@@ -514,9 +524,6 @@ $( "#formsubmit" ).click(function() {
         senddata.dates.push($this.attr("id"));
       }
   });
-
-  // console.log(ischecked)
-  // console.log(senddata)
 });
 
 
