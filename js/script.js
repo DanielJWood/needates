@@ -8,11 +8,10 @@
 //   });
 // });
 
-$("#submit").click(function(e){
-    e.preventDefault();
-    console.log('test')
-    window.location="article/";
-});
+// $("#submit").click(function(e){
+//     e.preventDefault();
+//     window.location="article/";
+// });
 
 
 // Initiate pym
