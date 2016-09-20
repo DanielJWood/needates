@@ -233,7 +233,27 @@ d3.json("data/usa2.json", function(error, regions) {
             break;
           };
         };        
+      });
+
+      regionTitles.append("tspan")
+      .attr("class","mobile-text2")
+      .text(function(d){
+        for (var i = datesdata.length - 1; i >= 0; i--) {
+          if (datesdata[i].id === d.id) {
+            if (datesdata[i].available !== 0) {
+              return "Dates"
+            } else {
+              return ""
+            }            
+            break;
+          };
+        };
       })
+      .attr("x",0)
+      .attr("y",function(d){
+          return 23;
+      });
+
 
     // Append Sum of Dates 
       regionTitles.append("tspan")
@@ -275,7 +295,7 @@ d3.json("data/usa2.json", function(error, regions) {
             break;
           };
         };        
-      })
+      });
 
       regionTitles.append("tspan")
       .attr("class","lowertext")

@@ -694,10 +694,15 @@ Foundation pieces and DOM
             display: none; 
         }
 
-        .region-title tspan.mobile-text {
+        .region-title tspan.mobile-text2, .region-title tspan.mobile-text {
             display: block !important;
             /*fill: #000;*/
             /*font-size: 18px;*/
+        }
+
+        .region-title tspan.mobile-text2 { 
+            font-size: 10px;
+            text-transform: uppercase;
         }
 
         .bubblecontainer {
@@ -713,7 +718,7 @@ Foundation pieces and DOM
         .region-title tspan {
             display: inline-block;
         }
-        .region-title tspan.mobile-text {
+        .region-title tspan.mobile-text2, .region-title tspan.mobile-text {
             display: none !important;
         }
 
