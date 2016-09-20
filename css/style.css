@@ -696,7 +696,7 @@ Foundation pieces and DOM
 
         .region-title tspan.mobile-text2, .region-title tspan.mobile-text {
             display: block !important;
-            /*fill: #000;*/
+            fill: #000 !important;
             /*font-size: 18px;*/
         }
 

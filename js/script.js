@@ -200,7 +200,7 @@ d3.json("data/usa2.json", function(error, regions) {
           if (datesdata[i].id === d.id) {
             if (datesdata[i].available !== 0) {
               needates = datesdata[i].available;  
-              return "15"
+              return "10"
             } else {
               return "0"
             }            
