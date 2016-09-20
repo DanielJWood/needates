@@ -44,6 +44,7 @@ Map
   stroke: #777;
   stroke-dasharray: 2,2;
   stroke-linejoin: round;
+  display: none;
 }
 .main-boundary {
   fill: none;
@@ -102,11 +103,12 @@ Map
 .Southeast { fill: #7FF5A5; background-color: #7FF5A5}
 .Northeast { fill: #FF9E9A; background-color: #FF9E9A}*/
 
-/* Bubbles and SHIT*/
+/* Bubbles and things*/
 .bubble {
     cursor: pointer;
     fill: #000 !important;
     opacity: .5;
+    display: none;
 }
 
 .city {
@@ -688,16 +690,43 @@ Foundation pieces and DOM
         }
 
         /*D3 fixes*/
-        .region-title {
+        .region-title tspan {
             display: none; 
+        }
+
+        .region-title tspan.mobile-text {
+            display: block !important;
+            /*fill: #000;*/
+            /*font-size: 18px;*/
+        }
+
+        .bubblecontainer {
+            display: none;
         }
 
 @media only screen and (min-width: 40.063em) { 
         /*D3 fixes*/
         .region-title {
-            font-size: 14px; 
+            font-size: 14px;             
+        }
+
+        .region-title tspan {
             display: inline-block;
         }
+        .region-title tspan.mobile-text {
+            display: none !important;
+        }
+
+        .bubble, .bubblecontainer {
+            display: inline-block !important;
+        }
+
+        .subunit-boundary {
+            display: block;
+        }
+
+
+
         .row h1 {
             font-size: 52px;        
             letter-spacing: 15px;

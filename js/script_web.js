@@ -1,10 +1,5 @@
-  // window.onload = function(){
-  //   pymChild.sendHeight();
-  // };
-
-  // $(window).load(function(){
-  //   pymChild.sendHeight();    
-  // });      
+(function ($) { 
+  $(document).ready(function() {     
 
 // inital data
 var datesdata = [
@@ -39,8 +34,6 @@ var datesdata = [
     "datesAvail": []
   }
 ];
-
-var pymChild = new pym.Child();
 
 function getMaxOfArray(numArray) {
   return Math.max.apply(null, numArray);
@@ -89,11 +82,11 @@ var rect = svg.append("rect")
 var g = svg.append("g");
 
 // d3.json("js/statesregionspr.json", function(error, regions) {
-d3.json("data/usa2.json", function(error, regions) {
+d3.json("http://needates.com/wp-content/uploads/2016/09/usa2.txt", function(error, regions) {
   if (error) throw error;
-  d3.csv("data/cities.csv", function(error, cities){
+  d3.csv("http://needates.com/wp-content/uploads/2016/09/cities.csv", function(error, cities){
 	 if (error) throw error;
-    d3.csv("data/dates/dates_9_12_16.csv", function(error, dates){
+    d3.csv("http://needates.com/wp-content/uploads/2016/09/dates_9_12_16.csv", function(error, dates){
       if (error) throw error;
 
     //populate the array that will fill the bubbles with the number of dates  
@@ -120,7 +113,7 @@ d3.json("data/usa2.json", function(error, regions) {
       }
 
       // Make sure its big enough on the parent!
-      pymChild.sendHeight();
+      // pymChild.sendHeight();
     }
 
   // The background coastal boundary goes first cuz its underneath
@@ -193,48 +186,6 @@ d3.json("data/usa2.json", function(error, regions) {
       .attr("text-anchor","middle")
       .on("click", clicked);
 
-    // Append Mobile Text
-    regionTitles.append("tspan")
-      .attr("y",function(d){
-        for (var i = datesdata.length - 1; i >= 0; i--) {
-          if (datesdata[i].id === d.id) {
-            if (datesdata[i].available !== 0) {
-              needates = datesdata[i].available;  
-              return "15"
-            } else {
-              return "0"
-            }            
-            break;
-          };
-        };
-      })
-      .text(function(d){
-        var needates;
-        for (var i = datesdata.length - 1; i >= 0; i--) {
-          if (datesdata[i].id === d.id) {
-            if (datesdata[i].available !== 0) {
-              needates = datesdata[i].available;  
-              return needates;
-            } else {
-              return ""              
-            }            
-            break;
-          };
-        };        
-      })
-      .attr("class",function(d){
-        for (var i = datesdata.length - 1; i >= 0; i--) {
-          if (datesdata[i].id === d.id) {
-            if (datesdata[i].available !== 0) {              
-              return "mobile-text";
-            } else {
-              return ""              
-            }            
-            break;
-          };
-        };        
-      })
-
     // Append Sum of Dates 
       regionTitles.append("tspan")
       .attr("y",function(d){
@@ -278,7 +229,6 @@ d3.json("data/usa2.json", function(error, regions) {
       })
 
       regionTitles.append("tspan")
-      .attr("class","lowertext")
       .text(function(d){
         for (var i = datesdata.length - 1; i >= 0; i--) {
           if (datesdata[i].id === d.id) {
@@ -489,7 +439,7 @@ function clicked(d) {
         greenTextchange[i].className = "change-text " + green;    
       };
 
-  pymChild.sendHeight();
+  // pymChild.sendHeight();
 
 }
 
@@ -566,5 +516,9 @@ function ReadMore() {
         }, 1000);
       });
     }
+  });  
+}(jQuery));   
+
+
   });  
 }(jQuery));   
