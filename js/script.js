@@ -250,9 +250,7 @@ d3.json("data/usa2.json", function(error, regions) {
         };
       })
       .attr("x",0)
-      .attr("y",function(d){
-          return 23;
-      });
+      .attr("y",19);
 
 
     // Append Sum of Dates 
