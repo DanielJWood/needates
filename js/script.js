@@ -1,10 +1,6 @@
-  // window.onload = function(){
-  //   pymChild.sendHeight();
-  // };
-
-  // $(window).load(function(){
-  //   pymChild.sendHeight();    
-  // });      
+// 1. Get rid of pym
+// 2. Change relative data to wp data
+// 3. Wrap in 'ready' jquery 
 
 // inital data
 var datesdata = [
@@ -105,23 +101,6 @@ d3.json("data/usa2.json", function(error, regions) {
         } 
       };  
     };    
-
-    window.onload = function(){
-      var dataLoad = topojson.feature(regions, regions.objects.regions3).features;
-      var hash = (window.location.hash).replace('#', '');
-      if (hash.length != 0) {
-        for (var i = 0; i < dataLoad.length; i++) {
-          dhash = dataLoad[i].properties.name.replace(/\s+/g, '-').toLowerCase();
-          if (dhash == hash) {
-            clicked(dataLoad[i])
-            break
-          };
-        };      
-      }
-
-      // Make sure its big enough on the parent!
-      pymChild.sendHeight();
-    }
 
   // The background coastal boundary goes first cuz its underneath
     g.append("path")
@@ -388,7 +367,7 @@ d3.json("data/usa2.json", function(error, regions) {
 function clicked(d) {
 
 // D3 stuff on click
-  var x, y, k, id, name, hash, green, summary, properties, boxWidth, title1, numIcon, IW, TW, halfBox, url, order, propinter;
+  var x, y, k, id, name, green, summary, properties, boxWidth, title1, numIcon, IW, TW, halfBox, url, order, propinter;
   var p = [[],[],[],[],[]];
   var boxHeight = 0;
 
@@ -412,7 +391,6 @@ function clicked(d) {
     centered = d;
     id = d.id;
     name = d.id;
-    hash = "#" + name.replace(/\s+/g, '-').toLowerCase();        
     green = d.id;         
   } else {
       //outclick
@@ -422,7 +400,6 @@ function clicked(d) {
     centered = [];
     id = "";
     name = "Click on a region to learn more"
-    hash = "#"
     green = "green-text"    
     summary = "";
   }
@@ -497,10 +474,8 @@ function clicked(d) {
       } else {  below.className = "active " + id
       };
 
-      window.location = hash;
 
       var linkBelow = document.getElementById("link-below")
-      linkBelow.href =  hash;
       
       var greenTextchange = document.getElementsByClassName("change-text")
       for (var i = greenTextchange.length - 1; i >= 0; i--) {

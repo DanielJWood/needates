@@ -81,11 +81,10 @@ var rect = svg.append("rect")
 
 var g = svg.append("g");
 
-// d3.json("js/statesregionspr.json", function(error, regions) {
 d3.json("http://needates.com/wp-content/uploads/2016/09/usa2.txt", function(error, regions) {
   if (error) throw error;
   d3.csv("http://needates.com/wp-content/uploads/2016/09/cities.csv", function(error, cities){
-	 if (error) throw error;
+   if (error) throw error;
     d3.csv("http://needates.com/wp-content/uploads/2016/09/dates_9_12_16.csv", function(error, dates){
       if (error) throw error;
 
@@ -111,9 +110,6 @@ d3.json("http://needates.com/wp-content/uploads/2016/09/usa2.txt", function(erro
           };
         };      
       }
-
-      // Make sure its big enough on the parent!
-      // pymChild.sendHeight();
     }
 
   // The background coastal boundary goes first cuz its underneath
@@ -127,7 +123,7 @@ d3.json("http://needates.com/wp-content/uploads/2016/09/usa2.txt", function(erro
       .attr("class", "coast-boundary");  
 
   // next the regions color
-  	var regionContainers = g.selectAll(".region")
+    var regionContainers = g.selectAll(".region")
         .data(topojson.feature(regions, regions.objects.regions3).features);
 
     var regionContainers2 = regionContainers.enter().append("g")
@@ -146,11 +142,11 @@ d3.json("http://needates.com/wp-content/uploads/2016/09/usa2.txt", function(erro
         .on("click", clicked)      
 
   // states boundary
-  	g.append("path")
+    g.append("path")
       .datum(topojson.mesh(regions, regions.objects.states1, function(a, b) { return a !== b}))
       .attr("d", path)
       .attr("cursor","pointer")
-      .attr("class", "subunit-boundary");	    
+      .attr("class", "subunit-boundary");     
 
   // Regions boundary
    g.append("path")
@@ -185,6 +181,66 @@ d3.json("http://needates.com/wp-content/uploads/2016/09/usa2.txt", function(erro
       })          
       .attr("text-anchor","middle")
       .on("click", clicked);
+
+    // Append Mobile Text
+    regionTitles.append("tspan")
+      .attr("y",function(d){
+        for (var i = datesdata.length - 1; i >= 0; i--) {
+          if (datesdata[i].id === d.id) {
+            if (datesdata[i].available !== 0) {
+              needates = datesdata[i].available;  
+              return "10"
+            } else {
+              return "0"
+            }            
+            break;
+          };
+        };
+      })
+      .text(function(d){
+        var needates;
+        for (var i = datesdata.length - 1; i >= 0; i--) {
+          if (datesdata[i].id === d.id) {
+            if (datesdata[i].available !== 0) {
+              needates = datesdata[i].available;  
+              return needates;
+            } else {
+              return ""              
+            }            
+            break;
+          };
+        };        
+      })
+      .attr("class",function(d){
+        for (var i = datesdata.length - 1; i >= 0; i--) {
+          if (datesdata[i].id === d.id) {
+            if (datesdata[i].available !== 0) {              
+              return "mobile-text";
+            } else {
+              return ""              
+            }            
+            break;
+          };
+        };        
+      });
+
+      regionTitles.append("tspan")
+      .attr("class","mobile-text2")
+      .text(function(d){
+        for (var i = datesdata.length - 1; i >= 0; i--) {
+          if (datesdata[i].id === d.id) {
+            if (datesdata[i].available !== 0) {
+              return "Dates"
+            } else {
+              return ""
+            }            
+            break;
+          };
+        };
+      })
+      .attr("x",0)
+      .attr("y",19);
+
 
     // Append Sum of Dates 
       regionTitles.append("tspan")
@@ -226,9 +282,10 @@ d3.json("http://needates.com/wp-content/uploads/2016/09/usa2.txt", function(erro
             break;
           };
         };        
-      })
+      });
 
       regionTitles.append("tspan")
+      .attr("class","lowertext")
       .text(function(d){
         for (var i = datesdata.length - 1; i >= 0; i--) {
           if (datesdata[i].id === d.id) {
@@ -438,9 +495,6 @@ function clicked(d) {
       for (var i = greenTextchange.length - 1; i >= 0; i--) {
         greenTextchange[i].className = "change-text " + green;    
       };
-
-  // pymChild.sendHeight();
-
 }
 
 
